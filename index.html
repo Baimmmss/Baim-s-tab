@@ -7,6 +7,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>baim's tab</title>
+    <style>
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+    </style>
+    <script>
+      // Block Right Click
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+
+      // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+      document.onkeydown = function(e) {
+        if(e.keyCode == 123) {
+           return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+           return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+           return false;
+        }
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+           return false;
+        }
+      };
+
+      // Crash DevTools if opened
+      setInterval(function() {
+        (function() {
+          return false;
+        }['constructor']('debugger')());
+      }, 50);
+    </script>
   </head>
   <body>
     <div id="root"></div>
